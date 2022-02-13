@@ -5,6 +5,10 @@ import { AppProps } from 'next/app';
 import { RenderPageResult } from 'next/dist/shared/lib/utils';
 import { ReactElement, ReactNode } from 'react';
 
+declare global {
+  const ethereum: any;
+}
+
 export declare type DocumentInitialProperties = RenderPageResult & {
   styles?: React.ReactElement[] | React.ReactFragment;
   emotionStyleTags?: EmotionJSX.Element[];
