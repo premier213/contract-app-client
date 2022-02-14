@@ -13,5 +13,5 @@ it('render index page', () => {
       </QueryClientProvider>
     </>
   );
-  expect(screen.getByTestId('e').textContent).toBe('welcome');
+  expect(screen.getByTestId('e')).toHaveTextContent('welcome');
 });

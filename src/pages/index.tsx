@@ -45,7 +45,7 @@ export default function HomePage() {
             component='div'
             sx={{ flexGrow: 1 }}
           ></Typography>
-          <Button color='inherit' onClick={connectWallet}>
+          <Button id='test' color='inherit' onClick={connectWallet}>
             {isAddressAvailable || address
               ? isAddressAvailable || address
               : 'connect wallet'}
