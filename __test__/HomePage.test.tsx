@@ -1,14 +1,17 @@
+/// <reference types="@types/jest" />
 import HomePage from '../src/pages/index';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-const setup = () => {
-  const utils = render(<HomePage />);
-  const implement = screen.getByRole('div');
-  return { implement, ...utils };
-};
-
-test('render homepage', () => {
-  const { implement } = setup();
-  expect(implement).toBeInTheDocument();
+it('render index page', () => {
+  const queryClient = new QueryClient();
+  render(
+    <>
+      <QueryClientProvider client={queryClient}>
+        <HomePage />
+      </QueryClientProvider>
+    </>
+  );
+  expect(screen.getByTestId('e').textContent).toBe('welcome');
 });

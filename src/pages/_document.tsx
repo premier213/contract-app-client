@@ -35,14 +35,14 @@ export default class MyDocument extends Document {
 MyDocument.getInitialProps = async (
   context: DocumentContext
 ): Promise<DocumentInitialProperties> => {
-  const originalRenderPage = context.renderPage;
+  const view = context.renderPage;
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
   context.renderPage = ():
     | DocumentInitialProperties
     | Promise<DocumentInitialProperties> =>
-    originalRenderPage({
+    view({
       enhanceApp: (App: any) =>
         function EnhanceApp(properties) {
           return <App emotionCache={cache} {...properties} />;

@@ -39,29 +39,31 @@ export default function MyApp(
     Component.getLayout ?? ((page: ReactElement): ReactNode => page);
 
   return (
-    <RecoilRoot>
-      <Head>
-        <title>Mui example</title>
-        <meta
-          name='viewport'
-          content='minimum-scale=1, initial-scale=1, width=device-width'
-        />
-      </Head>
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <CacheProvider value={emotionCache}>
-            <CacheProvider value={cache}>
-              {/* <CacheProvider value={cacheRtl}> */}
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                {getLayout(<Component {...pageProps} />)}
-              </ThemeProvider>
-              {/* </CacheProvider> */}
+    <>
+      <RecoilRoot>
+        <Head>
+          <title>Mui example</title>
+          <meta
+            name='viewport'
+            content='minimum-scale=1, initial-scale=1, width=device-width'
+          />
+        </Head>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <CacheProvider value={emotionCache}>
+              <CacheProvider value={cache}>
+                {/* <CacheProvider value={cacheRtl}> */}
+                <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  {getLayout(<Component {...pageProps} />)}
+                </ThemeProvider>
+                {/* </CacheProvider> */}
+              </CacheProvider>
             </CacheProvider>
-          </CacheProvider>
-        </Hydrate>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </RecoilRoot>
+          </Hydrate>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </RecoilRoot>
+    </>
   );
 }

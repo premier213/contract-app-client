@@ -1,5 +1,4 @@
 module.exports = {
-  root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -11,23 +10,25 @@ module.exports = {
     'security',
     '@typescript-eslint',
     'jsx-a11y',
+    'cypress',
     'testing-library',
-    'jest-dom',
-    'plugin:testing-library/react'
+    'jest-dom'
   ],
   extends: [
+    'plugin:cypress/recommended',
     'plugin:jest-dom/recommended',
     'plugin:testing-library/react',
+    'plugin:import/typescript',
     'plugin:import/recommended',
     'plugin:security/recommended',
     'plugin:jsx-a11y/recommended',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@next/next/recommended',
     'prettier',
     'next/core-web-vitals'
   ],
   rules: {
+    'jest/expect-expect': 'off',
     'import/no-unresolved': 'off',
     'lines-around-comment': [
       'error',
@@ -85,17 +86,16 @@ module.exports = {
     'no-console': 'warn',
     'import/first': 'error',
     'import/newline-after-import': 'error',
-    'import/no-duplicates': 'error'
+    'import/no-duplicates': 'error',
+    'no-restricted-imports': 'off'
   },
-  // overrides: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+  // overrides: ['__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx']
     },
     'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts']
-      }
+      typescript: {}
     }
   }
 };
